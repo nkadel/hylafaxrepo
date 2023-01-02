@@ -1,0 +1,14 @@
+diff --git a/logfile.c b/logfile.c
+index cf7c5c3..62fa6cc 100644
+--- a/logfile.c
++++ b/logfile.c
+@@ -351,8 +351,7 @@ sigset_t ss, oss;
+ 		             tm->tm_mon+1,  tm->tm_mday,
+ 			     tm->tm_hour, tm->tm_min, tm->tm_sec,
+ 		             log_infix, ws,
+-			     ( errnr <= sys_nerr ) ? sys_errlist[errnr]:
+-			     "<error not in list>" );
++			     strerror(errnr));
+ #ifdef SYSLOG
+ 	sigemptyset(&ss);
+ 	sigaddset(&ss, SIGALRM);

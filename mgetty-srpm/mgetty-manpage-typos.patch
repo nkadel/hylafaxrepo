@@ -1,0 +1,59 @@
+diff --git a/doc/callback.8in b/doc/callback.8in
+index 61d3290..3bea611 100644
+--- a/doc/callback.8in
++++ b/doc/callback.8in
+@@ -94,7 +94,7 @@ start a "login shell", it won't work (this is for the same reason
+ has to be started from /etc/inittab).
+ 
+ So, mgetty has to do the "asking for login name". But I do not want to
+-have all that dialout code in mgetty, bloating it even more.
++have all that dial-out code in mgetty, bloating it even more.
+ 
+ The way it works is this:
+ .I callback
+diff --git a/doc/g32pbm.1in b/doc/g32pbm.1in
+index fd31397..2feacaf 100644
+--- a/doc/g32pbm.1in
++++ b/doc/g32pbm.1in
+@@ -36,12 +36,12 @@ is activated automatically if the file is specified on the command
+ line and its name starts with "fn..." (fax/normal).
+ .TP
+ .B -l(aserjet)
+-Instead of a portable bitmap (PBM), output HP laserjet files, suitable for
+-direct printing on a HP laserjet or desjket.
++Instead of a portable bitmap (PBM), output HP LaserJet files, suitable for
++direct printing on a HP LaserJet or DeskJet.
+ .TP
+ .B -d <dpi>
+ Scale output to <dpi> dots per inch before printing. Normal FAX resolution
+-is 204x196 dpi (fine mode), or 204x98 dpi (normal mode). In LaerJet mode,
++is 204x196 dpi (fine mode), or 204x98 dpi (normal mode). In LaserJet mode,
+ only the values 75, 150 and 300 are allowed for <dpi>.
+ .TP
+ .B -t
+diff --git a/doc/g3cat.1in b/doc/g3cat.1in
+index a0339b8..e38aa54 100644
+--- a/doc/g3cat.1in
++++ b/doc/g3cat.1in
+@@ -35,7 +35,7 @@ specifies the number of blank lines
+ should prepend to each page. Default is 0.
+ .TP
+ .B "\-L <lines>"
+-limit lenght of output page to maximum <lines> lines.
++limit length of output page to maximum <lines> lines.
+ .SH SPECIAL-CASE OPTIONS
+ .TP
+ .B "\-w <width>"
+diff --git a/doc/mgettydefs.4in b/doc/mgettydefs.4in
+index c3fe5bf..3646ccb 100644
+--- a/doc/mgettydefs.4in
++++ b/doc/mgettydefs.4in
+@@ -262,7 +262,7 @@ Ignore case - treat all as lowercase.
+ Is set if mgetty believes login is entirely uppercase.
+ .TP
+ .B -LCASE
+-Repect case 
++Respect case 
+ (turns off IUCLC, OLCUC and XCASE)
+ .TP
+ .B TABS
