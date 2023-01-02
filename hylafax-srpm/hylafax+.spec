@@ -9,7 +9,8 @@
 Summary:   An enterprise-strength fax server
 Name:      hylafax+
 Version:   7.0.6
-Release:   1%{?dist}
+#Release:   1%%{?dist}
+Release:   0.1%{?dist}
 License:   libtiff and BSD with advertising
 URL:       http://hylafax.sourceforge.net
 
