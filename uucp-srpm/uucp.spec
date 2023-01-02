@@ -20,7 +20,8 @@
 Summary: A set of utilities for operations between systems
 Name: uucp
 Version: 1.07
-Release: 66%{?dist}
+#Release: 66%%{?dist}
+Release: 0.66%{?dist}
 License: GPLv2+
 Url: http://www.airs.com/ian/uucp.html
 Source0: ftp://ftp.gnu.org/pub/gnu/uucp/uucp-%{version}.tar.gz
