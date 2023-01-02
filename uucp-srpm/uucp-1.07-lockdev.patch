@@ -1,0 +1,52 @@
+--- uucp-1.07-orig/configure.in	2003-05-30 03:30:09.000000000 +0200
++++ uucp-1.07/configure.in	2011-10-07 20:07:40.312855325 +0200
+@@ -435,6 +435,8 @@ case $LIBS in
+ *-lxti*) ;;
+ *) AC_CHECK_LIB(xti, t_open);;
+ esac
++AC_CHECK_LIB(lockdev, ttylock)
++dnl
+ AC_CHECK_FUNCS(socket t_open)
+ dnl
+ AC_CHECK_FUNCS(getcwd getwd)
+--- uucp-1.07-orig/unix/serial.c	2011-10-07 20:02:13.900936037 +0200
++++ uucp-1.07/unix/serial.c	2011-10-07 20:02:13.904935987 +0200
+@@ -126,6 +126,11 @@ const char serial_rcsid[] = "$Id: serial
+ #include <sys/termiox.h>
+ #endif
+ 
++#define	HAVE_TTYLOCK 1
++#if HAVE_TTYLOCK
++#include <ttylock.h>
++#endif
++
+ /* Get definitions for both O_NONBLOCK and O_NDELAY.  */
+ #ifndef O_NDELAY
+ #ifdef FNDELAY
+@@ -623,6 +628,18 @@ fsserial_lockfile (flok, qconn)
+ 	z = zalc;
+       }
+ #else /* ! HAVE_QNX_LOCKFILES */
++#if HAVE_TTYLOCK
++      {
++	int rc;
++	
++	if (flok)
++	  rc = ttylock(qsysdep->zdevice);
++	else
++	  rc = ttyunlock(qsysdep->zdevice);
++	fret = (rc == 0 ? TRUE : FALSE);
++	return fret;
++      }
++#else /* ! HAVE_TTYLOCK */
+ #if ! HAVE_SVR4_LOCKFILES
+       {
+ 	const char *zbase;
+@@ -660,6 +677,7 @@ fsserial_lockfile (flok, qconn)
+ 	z = zalc;
+       }
+ #endif /* HAVE_SVR4_LOCKFILES */
++#endif /* ! HAVE_TTYLOCK */
+ #endif /* ! HAVE_QNX_LOCKFILES */
+     }
+ 

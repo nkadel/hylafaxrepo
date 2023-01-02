@@ -1,0 +1,47 @@
+--- uucp-1.07/unix/serial.c.sigfpe	2003-05-29 02:08:49.000000000 -0400
++++ uucp-1.07/unix/serial.c	2004-06-08 12:03:07.814000118 -0400
+@@ -2540,15 +2540,35 @@
+ 	  else
+ 	    csleepchars = MAX_INPUT - 10;
+ 
++#ifndef BUG
++         if (q->ibaud) {
++           isleep = (int) (((long)  csleepchars * 10000L) / q->ibaud);
++           isleep -= 10;
++         } else {
++           isleep = 1000; /* I hope, a second is right...  */
++         }
++#else
+ 	  isleep = (int) (((long) csleepchars * 10000L) / q->ibaud);
+ 	  isleep -= 10;
++#endif
+ 
+ 	  if (isleep > 10)
+ 	    {
+ 	      struct timeval s;
+ 
++#ifndef BUG
++              if (q->ibaud) {
++		stime.tv_sec = (long) 10240 / q->ibaud;
++		stime.tv_usec = ((((long) 1024000000 / q->ibaud) * (long) 10)
++                            % (long) 1000000);
++              } else {
++		stime.tv_sec = 1;
++		stime.tv_usec = 0;
++              }
++#else
+ 	      s.tv_sec = isleep / 1000;
+ 	      s.tv_usec = (isleep % 1000) * 1000;
++#endif
+ 
+ 	      /* Some versions of select take a pointer to an int,
+ 		 while some take a pointer to an fd_set.  I just cast
+@@ -3047,7 +3067,7 @@
+                  we don't need to use the catch stuff, since we know
+                  that HAVE_RESTARTABLE_SYSCALLS is 0.  */
+ 	      usset_signal (SIGALRM, usalarm, TRUE, (boolean *) NULL);
+-	      if (q->fterminal)
++	      if (q->fterminal && q->ibaud)
+ 		alarm ((int) ((long) 10240 / q->ibaud) + 1);
+ 	      else
+ 		alarm (1);
