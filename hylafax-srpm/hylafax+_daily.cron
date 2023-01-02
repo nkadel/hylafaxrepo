@@ -1,0 +1,11 @@
+#!/bin/sh
+
+if [ -f /etc/sysconfig/hylafax+ ]; then
+  . /etc/sysconfig/hylafax+
+fi
+
+if [ "$FAXCRON_RUN" != "no" ]; then
+  /usr/sbin/faxcron $FAXCRON_OPTIONS | mail -s "HylaFAX Usage Report" faxmaster
+fi
+
+exit 0

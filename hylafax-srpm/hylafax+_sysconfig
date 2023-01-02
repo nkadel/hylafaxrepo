@@ -1,0 +1,29 @@
+#
+# Put additional command-line options for hfaxd here
+#
+HFAXD_OPTIONS="-i hylafax"
+
+#
+# Put additional command-line options for faxq here
+#
+FAXQ_OPTIONS=
+
+#
+# Disable hourly faxqclean if not needed here
+#
+FAXQCLEAN_RUN="yes"
+
+#
+# Put command-line options for faxqclean here
+#
+FAXQCLEAN_OPTIONS=
+
+#
+# Disable daily faxcron if not needed here
+#
+FAXCRON_RUN="yes"
+
+#
+# Put command-line options for faxcron here
+#
+FAXCRON_OPTIONS=

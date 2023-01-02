@@ -1,0 +1,22 @@
+[Unit]
+Description=faxgetty on /dev/%I
+Documentation=man:faxgetty(8)
+BindsTo=dev-%i.device
+After=dev-%i.device systemd-user-sessions.service plymouth-quit-wait.service
+After=rc-local.service
+Before=getty.target
+IgnoreOnIsolate=yes
+
+[Service]
+ExecStart=-/usr/sbin/faxgetty /dev/%I
+Type=idle
+Restart=always
+RestartSec=0
+UtmpIdentifier=%I
+TTYPath=/dev/%I
+KillMode=process
+IgnoreSIGPIPE=no
+
+[Install]
+WantedBy=getty.target
+
