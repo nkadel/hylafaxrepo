@@ -13,7 +13,7 @@ HYLAFAXPKGS+=uucp-srpm
 HYLAFAXPKGS+=mgetty-srpm
 
 # Dependencies on above
-HYLAFAXPKGS+=hylafax-srpm
+HYLAFAXPKGS+=hylafax+-srpm
 
 REPOS+=hylafaxrepo/el/7
 REPOS+=hylafaxrepo/el/8
