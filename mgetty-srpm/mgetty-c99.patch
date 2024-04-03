@@ -1,0 +1,26 @@
+Add additional #include directives for declarations of usleep and
+initgroups.  Improves compatibility with future compilers which reject
+implicit function declarations by default.
+
+diff -ur mgetty-1.2.1.orig/frontends/X11/viewfax/viewfax.c mgetty-1.2.1/frontends/X11/viewfax/viewfax.c
+--- mgetty-1.2.1.orig/frontends/X11/viewfax/viewfax.c	2018-03-05 19:37:38.000000000 +0100
++++ mgetty-1.2.1/frontends/X11/viewfax/viewfax.c	2022-12-14 21:48:33.755973170 +0100
+@@ -21,6 +21,7 @@
+ #include <stdio.h>
+ #include <string.h>
+ #include <sys/time.h>
++#include <unistd.h>
+ /* NewImage() needs to fiddle with the Display structure */
+ #define XLIB_ILLEGAL_ACCESS
+ #include <X11/Xlib.h>
+diff -ur mgetty-1.2.1.orig/login.c mgetty-1.2.1/login.c
+--- mgetty-1.2.1.orig/login.c	2022-12-14 21:44:26.151841433 +0100
++++ mgetty-1.2.1/login.c	2022-12-14 21:44:49.970565518 +0100
+@@ -11,6 +11,7 @@
+ #include <unistd.h>
+ #include <string.h>
+ #include <pwd.h>
++#include <grp.h>
+ #include <ctype.h>
+ #ifndef EINVAL
+ #include <errno.h>
