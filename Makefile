@@ -18,26 +18,26 @@ HYLAFAXPKGS+=hylafax+-srpm
 REPOS+=hylafaxrepo/el/7
 REPOS+=hylafaxrepo/el/8
 REPOS+=hylafaxrepo/el/9
-REPOS+=hylafaxrepo/fedora/37
-REPOS+=hylafaxrepo/amz/2
+REPOS+=hylafaxrepo/fedora/39
+REPOS+=hylafaxrepo/amz/2023
 
 REPODIRS := $(patsubst %,%/x86_64/repodata,$(REPOS)) $(patsubst %,%/SRPMS/repodata,$(REPOS))
 
 CFGS+=hylafaxrepo-7-x86_64.cfg
 CFGS+=hylafaxrepo-8-x86_64.cfg
 CFGS+=hylafaxrepo-9-x86_64.cfg
-CFGS+=hylafaxrepo-f37-x86_64.cfg
+CFGS+=hylafaxrepo-f39-x86_64.cfg
 # Amazon 2 config
-#CFGS+=hylafaxrepo-amz2-x86_64.cfg
+#CFGS+=hylafaxrepo-amz2023-x86_64.cfg
 
 # /etc/mock version lacks python39 modules
-CFGS+=centos-stream+epel-8-x86_64.cfg
+CFGS+=centos-stream+epel-next-8-x86_64.cfg
 
 # Link from /etc/mock
 MOCKCFGS+=centos+epel-7-x86_64.cfg
-MOCKCFGS+=centos-stream+epel-9-x86_64.cfg
-MOCKCFGS+=fedora-37-x86_64.cfg
-#MOCKCFGS+=amazonlinux-2-x86_64.cfg
+MOCKCFGS+=centos-stream+epel-next-9-x86_64.cfg
+MOCKCFGS+=fedora-39-x86_64.cfg
+#MOCKCFGS+=amazonlinux-2023-x86_64.cfg
 
 all:: install
 
@@ -88,7 +88,7 @@ $(MOCKCFGS)::
 	@echo Generating $@ from $?
 	@echo "include('/etc/mock/$@')" | tee $@
 
-centos-stream+epel-8-x86_64.cfg:: /etc/mock/centos-stream+epel-8-x86_64.cfg
+centos-stream+epel-next-8-x86_64.cfg:: /etc/mock/centos-stream+epel-next-8-x86_64.cfg
 	@echo Generating $@ from $?
 	@echo "include('$?')" | tee $@
 	@echo "# Enable python39 modules" | tee -a $@
@@ -111,7 +111,7 @@ hylafaxrepo-7-x86_64.cfg: /etc/mock/centos+epel-7-x86_64.cfg
 	@echo 'gpgcheck=0' | tee -a $@
 	@echo '"""' | tee -a $@
 
-hylafaxrepo-8-x86_64.cfg: /etc/mock/centos-stream+epel-8-x86_64.cfg
+hylafaxrepo-8-x86_64.cfg: /etc/mock/centos-stream+epel-next-8-x86_64.cfg
 	@echo Generating $@ from $?
 	@echo "include('$?')" | tee $@
 	@echo "config_opts['root'] = 'hylafaxrepo-{{ releasever }}-{{ target_arch }}'" | tee -a $@
@@ -130,7 +130,7 @@ hylafaxrepo-8-x86_64.cfg: /etc/mock/centos-stream+epel-8-x86_64.cfg
 	@echo '"""' | tee -a $@
 
 # packages-microsoft-com-prod added for /bin/pwsh
-hylafaxrepo-9-x86_64.cfg: centos-stream+epel-9-x86_64.cfg
+hylafaxrepo-9-x86_64.cfg: centos-stream+epel-next-9-x86_64.cfg
 	@echo Generating $@ from $?
 	@echo "include('$?')" | tee $@
 	@echo "config_opts['root'] = 'hylafaxrepo-{{ releasever }}-{{ target_arch }}'" | tee -a $@
@@ -151,7 +151,7 @@ hylafaxrepo-9-x86_64.cfg: centos-stream+epel-9-x86_64.cfg
 	@echo 'gpgkey=https://packages.microsoft.com/keys/microsoft.asc' | tee -a $@
 	@echo '"""' | tee -a $@
 
-hylafaxrepo-f37-x86_64.cfg: /etc/mock/fedora-37-x86_64.cfg
+hylafaxrepo-f39-x86_64.cfg: /etc/mock/fedora-39-x86_64.cfg
 	@echo Generating $@ from $?
 	@echo "include('$?')" | tee $@
 	@echo "config_opts['root'] = 'hylafaxrepo-f{{ releasever }}-{{ target_arch }}'" | tee -a $@
@@ -159,7 +159,7 @@ hylafaxrepo-f37-x86_64.cfg: /etc/mock/fedora-37-x86_64.cfg
 	@echo '[hylafaxrepo]' | tee -a $@
 	@echo 'name=hylafaxrepo' | tee -a $@
 	@echo 'enabled=1' | tee -a $@
-	@echo 'baseurl=$(REPOBASE)/hylafaxrepo/fedora/37/x86_64/' | tee -a $@
+	@echo 'baseurl=$(REPOBASE)/hylafaxrepo/fedora/39/x86_64/' | tee -a $@
 	@echo 'skip_if_unavailable=False' | tee -a $@
 	@echo 'metadata_expire=1s' | tee -a $@
 	@echo 'gpgcheck=0' | tee -a $@
@@ -179,15 +179,15 @@ hylafaxrepo-rawhide-x86_64.cfg: /etc/mock/fedora-rawhide-x86_64.cfg
 	@echo 'gpgcheck=0' | tee -a $@
 	@echo '"""' | tee -a $@
 
-hylafaxrepo-amz2-x86_64.cfg: /etc/mock/amazonlinux-2-x86_64.cfg
+hylafaxrepo-amz2023-x86_64.cfg: /etc/mock/amazonlinux-2023-x86_64.cfg
 	@echo Generating $@ from $?
 	@echo "include('$?')" | tee $@
-	@echo "config_opts['root'] = 'hylafaxrepo-amz2-{{ target_arch }}'" | tee -a $@
+	@echo "config_opts['root'] = 'hylafaxrepo-amz2023-{{ target_arch }}'" | tee -a $@
 	@echo "config_opts['dnf.conf'] += \"\"\"" | tee -a $@
 	@echo '[hylafaxrepo]' | tee -a $@
 	@echo 'name=hylafaxrepo' | tee -a $@
 	@echo 'enabled=1' | tee -a $@
-	@echo 'baseurl=$(REPOBASE)/hylafaxrepo/amz/2/x86_64/' | tee -a $@
+	@echo 'baseurl=$(REPOBASE)/hylafaxrepo/amz/2023/x86_64/' | tee -a $@
 	@echo 'skip_if_unavailable=False' | tee -a $@
 	@echo 'metadata_expire=1s' | tee -a $@
 	@echo 'gpgcheck=0' | tee -a $@
