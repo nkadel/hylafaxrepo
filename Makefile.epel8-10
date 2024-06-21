@@ -5,15 +5,15 @@
 # Assure that sorting is case sensitive
 LANG=C
 
-#MOCKS+=centos+epel-7-x86_64
-MOCKS+=centos-stream+epel-next-8-x86_64
-MOCKS+=centos-stream+epel-next-9-x86_64
-#MOCKS+=fedora-39-x86_64
+MOCKS+=alma+epel-8-x86_64
+MOCKS+=alma+epel-9-x86_64
+MOCKS+=alma+epel-10-x86_64
+#MOCKS+=fedora-40-x86_64
 
-#MOCKCFGS+=hylafaxrepo-7-x86_64
 MOCKCFGS+=hylafaxrepo-8-x86_64
 MOCKCFGS+=hylafaxrepo-9-x86_64
-#MOCKCFGS+=hylafaxrepo-f39-x86_64
+MOCKCFGS+=hylafaxrepo-10-x86_64
+#MOCKCFGS+=hylafaxrepo-f40-x86_64
 
 #REPOBASEDIR=/var/www/linux/hylafaxrepo
 REPOBASEDIR:=`/bin/pwd`/../hylafaxrepo
@@ -63,11 +63,10 @@ install:: $(MOCKS)
 	    case $$repo in \
 		amazonlinux-2-x86_64) yumrelease=amazon/2; yumarch=x86_64; ;; \
 		*-amz2-x86_64) yumrelease=amazon/2; yumarch=x86_64; ;; \
-		*-7-x86_64) yumrelease=el/7; yumarch=x86_64; ;; \
 		*-8-x86_64) yumrelease=el/8; yumarch=x86_64; ;; \
 		*-9-x86_64) yumrelease=el/9; yumarch=x86_64; ;; \
-		*-39-x86_64) yumrelease=fedora/39; yumarch=x86_64; ;; \
-		*-f39-x86_64) yumrelease=fedora/39; yumarch=x86_64; ;; \
+		*-40-x86_64) yumrelease=fedora/40; yumarch=x86_64; ;; \
+		*-f40-x86_64) yumrelease=fedora/40; yumarch=x86_64; ;; \
 		*-rawhide-x86_64) yumrelease=fedora/rawhide; yumarch=x86_64; ;; \
 		*) echo "Unrecognized release for $$repo, exiting" >&2; exit 1; ;; \
 	    esac; \
