@@ -120,35 +120,35 @@ Viewfax is capable of zooming in and out on the displayed fax.
 %prep
 %setup -q
 mv policy.h-dist policy.h
-%patch0 -p1 -b .config
-%patch1 -p1 -b .policy
-%patch2 -p1 -b .system-gsm
+%patch 0 -p1 -b .config
+%patch 1 -p1 -b .policy
+%patch 2 -p1 -b .system-gsm
 rm -r voice/libmgsm
-%patch4 -p1 -b .voiceconfig
-%patch5 -p1 -b .issue
-%patch6 -p1 -b .issue-doc
-%patch7 -p1 -b .helper
-%patch8 -p1 -b .mktemp
-%patch9 -p1 -b .unioninit
-%patch11 -p1 -b .helper2
-%patch12 -p1 -b .no-acroread
-%patch14 -p1 -b .sendmail_path
-%patch15 -p1 -b .lfs
-%patch16 -p1 -b .162174_tcflush
-%patch18 -p1 -b .bug_63843
-%patch19 -p1 -b .167830_tty_access
-%patch20 -p1 -b .167830
-%patch21 -p1 -b .turn
-%patch22 -p1 -b .time_range
-%patch23 -p1 -b .handle_spaces
-%patch24 -p1 -b .man
-%patch25 -p1 -b .sd
-%patch26 -p1 -b .makefile
-%patch27 -p1 -b .lockdev
-%patch28 -p1 -b .hardening
-%patch29 -p1 -b .sys_nerr-removed
-%patch30 -p1 -b .manpage-typos
-%patch31 -p1 -b .c99
+%patch 4 -p1 -b .voiceconfig
+%patch 5 -p1 -b .issue
+%patch 6 -p1 -b .issue-doc
+%patch 7 -p1 -b .helper
+%patch 8 -p1 -b .mktemp
+%patch 9 -p1 -b .unioninit
+%patch 11 -p1 -b .helper2
+%patch 12 -p1 -b .no-acroread
+%patch 14 -p1 -b .sendmail_path
+%patch 15 -p1 -b .lfs
+%patch 16 -p1 -b .162174_tcflush
+%patch 18 -p1 -b .bug_63843
+%patch 19 -p1 -b .167830_tty_access
+%patch 20 -p1 -b .167830
+%patch 21 -p1 -b .turn
+%patch 22 -p1 -b .time_range
+%patch 23 -p1 -b .handle_spaces
+%patch 24 -p1 -b .man
+%patch 25 -p1 -b .sd
+%patch 26 -p1 -b .makefile
+%patch 27 -p1 -b .lockdev
+%patch 28 -p1 -b .hardening
+%patch 29 -p1 -b .sys_nerr-removed
+%patch 30 -p1 -b .manpage-typos
+%patch 31 -p1 -b .c99
 
 %build
 %define makeflags CFLAGS="$RPM_OPT_FLAGS -Wall -DAUTO_PPP -D_FILE_OFFSET_BITS=64 -DHAVE_LOCKDEV -fno-strict-aliasing" LIBS="-llockdev" prefix=%{_prefix} spool=%{_var}/spool BINDIR=%{_bindir} SBINDIR=%{_sbindir} LIBDIR=%{_libdir}/mgetty+sendfax HELPDIR=%{_libdir}/mgetty+sendfax CONFDIR=%{_sysconfdir}/mgetty+sendfax MANDIR=%{_mandir} MAN1DIR=%{_mandir}/man1 MAN4DIR=%{_mandir}/man4 MAN5DIR=%{_mandir}/man5 MAN8DIR=%{_mandir}/man8 INFODIR=%{_infodir} ECHO='"echo -e"' INSTALL=%{__install}
