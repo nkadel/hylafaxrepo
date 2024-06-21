@@ -34,7 +34,6 @@ CFGS+=hylafaxrepo-f40-x86_64.cfg
 CFGS+=alma+epel-8-x86_64.cfg
 
 # Link from /etc/mock
-MOCKCFGS+=alma+epel-7-x86_64.cfg
 MOCKCFGS+=alma+epel-8-x86_64.cfg
 MOCKCFGS+=alma+epel-9-x86_64.cfg
 MOCKCFGS+=alma+epel-10-x86_64.cfg

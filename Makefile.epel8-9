@@ -7,12 +7,12 @@ LANG=C
 
 MOCKS+=alma+epel-8-x86_64
 MOCKS+=alma+epel-9-x86_64
-MOCKS+=alma+epel-10-x86_64
+#MOCKS+=alma+epel-10-x86_64
 #MOCKS+=fedora-40-x86_64
 
 MOCKCFGS+=hylafaxrepo-8-x86_64
 MOCKCFGS+=hylafaxrepo-9-x86_64
-MOCKCFGS+=hylafaxrepo-10-x86_64
+#MOCKCFGS+=hylafaxrepo-10-x86_64
 #MOCKCFGS+=hylafaxrepo-f40-x86_64
 
 #REPOBASEDIR=/var/www/linux/hylafaxrepo

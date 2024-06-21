@@ -64,7 +64,6 @@ install:: $(MOCKS)
 	    case $$repo in \
 		amazonlinux-2-x86_64) yumrelease=amazon/2; yumarch=x86_64; ;; \
 		*-amz2-x86_64) yumrelease=amazon/2; yumarch=x86_64; ;; \
-		*-7-x86_64) yumrelease=el/7; yumarch=x86_64; ;; \
 		*-8-x86_64) yumrelease=el/8; yumarch=x86_64; ;; \
 		*-9-x86_64) yumrelease=el/9; yumarch=x86_64; ;; \
 		*-10-x86_64) yumrelease=el/10; yumarch=x86_64; ;; \
