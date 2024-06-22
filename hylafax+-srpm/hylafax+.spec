@@ -31,27 +31,17 @@ BuildRequires: openssl-devel
 BuildRequires: gcc-c++
 BuildRequires: make
 BuildRequires: %{_sbindir}/sendmail, ghostscript, mgetty
-%if 0%{?fedora} >= 16
 BuildRequires: jbigkit-devel
-%endif
-%if 0%{?fedora}
 BuildRequires: lcms2-devel
-%else
-BuildRequires: lcms-devel
-%endif
-%if 0%{?fedora} >= 16
+# No longer used
+#BuildRequires: lcms-devel
 BuildRequires: systemd-units
-%endif
-%if 0%{?fedora} >= 18
 BuildRequires: systemd
-%endif
-%if 0%{?fedora} >= 27 || 0%{?rhel} > 7
 BuildRequires: urw-base35-fonts
 Requires: urw-base35-fonts
-%else
-BuildRequires: ghostscript-fonts
-Requires: ghostscript-fonts
-%endif
+# Names from RHEL 7
+#BuildRequires: ghostscript-fonts
+#Requires: ghostscript-fonts
 Requires:    ghostscript, uucp, gawk, sharutils, mailx, crontabs, %{_bindir}/tiffcp, mgetty
 Requires:    openssl
 Conflicts:   mgetty-sendfax
